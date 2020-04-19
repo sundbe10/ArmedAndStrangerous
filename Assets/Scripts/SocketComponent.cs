@@ -91,7 +91,6 @@ public class SocketComponent : MonoBehaviour
             //m_joint.connectedBody = getRigidBody();
 
             SetLayerRecursively(gameObject, 8);
-            Debug.Log(getRigidBody().name);
             getRigidBody().isKinematic = true;
 
             //NormlaizeMass(holeSocket.rootBody.transform);
@@ -193,12 +192,15 @@ public class SocketComponent : MonoBehaviour
         
         if (m_isPlugged)
         {
-            m_joint.connectedBody = null;
             transform.parent = null;
             m_isPlugged = false;
             getRigidBody().isKinematic = false;
             SetLayerRecursively(gameObject, 0);
-            Destroy(m_joint);
+            if (m_joint)
+            {
+                m_joint.connectedBody = null;
+                Destroy(m_joint);
+            }
         }
     }
 

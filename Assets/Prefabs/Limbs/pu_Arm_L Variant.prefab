@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -26.560001
       objectReference: {fileID: 0}
+    - target: {fileID: 4294804950740233391, guid: 51fe2cb23aa97a04ea392996f6a639c0,
+        type: 3}
+      propertyPath: itemName
+      value: Human Arm
+      objectReference: {fileID: 0}
     - target: {fileID: 5376642871095607458, guid: 51fe2cb23aa97a04ea392996f6a639c0,
         type: 3}
       propertyPath: m_Mass

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptIcon: {fileID: 7844682269212497367, guid: 7174c4259887e3a41974e70827c9173a,
     type: 3}
+  itemName: Halberd
 --- !u!54 &3950492208823503076
 Rigidbody:
   m_ObjectHideFlags: 0

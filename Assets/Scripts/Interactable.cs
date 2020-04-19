@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public GameObject promptIcon;
+    public string itemName = "Limb";
     Canvas s_canvas;
     private GameObject m_iconObj;
 
