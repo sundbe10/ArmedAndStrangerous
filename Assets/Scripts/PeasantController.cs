@@ -70,6 +70,11 @@ public class PeasantController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+    }
+
     IEnumerator StateTimer(PeasantSate newState)
     {
         yield return new WaitForSeconds(Random.Range(3, 7));
