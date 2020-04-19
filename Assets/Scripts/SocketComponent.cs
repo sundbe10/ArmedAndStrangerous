@@ -28,9 +28,9 @@ public class SocketComponent : MonoBehaviour
     private bool m_isPlugged;
     private bool m_hasPlug;
     private SocketComponent m_attachedPlug;
-    private CharacterJoint m_joint;
+    private Joint m_joint;
 
-    public CharacterJoint getJoint()
+    public Joint getJoint()
     {
         return m_joint;
     }
@@ -40,9 +40,14 @@ public class SocketComponent : MonoBehaviour
         return !m_hasPlug;
     }
 
+    public bool IsPlugged()
+    {
+        return m_isPlugged;
+    }
+
     public Rigidbody getRigidBody()
     {
-        return rootBody;
+        return rootBody != null ? rootBody : GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
@@ -80,21 +85,54 @@ public class SocketComponent : MonoBehaviour
         if (m_isPlugged)
         {
             transform.parent = holeSocket.transform;
-            transform.rotation = Quaternion.FromToRotation(axis, holeSocket.axis) * transform.rotation;
-            transform.localPosition = holeSocket.socketOffset;
-            m_joint = gameObject.AddComponent<CharacterJoint>();
+            transform.localRotation = Quaternion.FromToRotation(axis, holeSocket.axis);
+            transform.position = holeSocket.transform.position + holeSocket.transform.TransformVector(holeSocket.socketOffset) - transform.TransformVector(socketOffset);
+            //m_joint = gameObject.AddComponent<FixedJoint>();
+            //m_joint.connectedBody = getRigidBody();
 
+            SetLayerRecursively(gameObject, 8);
+            Debug.Log(getRigidBody().name);
             getRigidBody().isKinematic = true;
 
-            InitJoint(ref m_joint);
-            m_joint.connectedBody = holeSocket.getRigidBody();
+            //NormlaizeMass(holeSocket.rootBody.transform);
+
+            //InitJoint(ref m_joint);
+            //m_joint.connectedBody = holeSocket.getRigidBody();
             //m_joint.autoConfigureConnectedAnchor = false;
-            m_joint.anchor = socketOffset;
+            //m_joint.anchor = socketOffset;
             //m_joint.connectedAnchor = -0.2f * holeSocket.axis;
 
         }
         return m_isPlugged;
 
+    }
+
+    private void NormlaizeMass(Transform root)
+    {
+        var j = root.GetComponent<Joint>();
+
+        // Apply the inertia scaling if possible
+        if (j && j.connectedBody)
+        {
+            // Make sure that both of the connected bodies will be moved by the solver with equal speed
+            j.massScale = j.connectedBody.mass / root.GetComponent<Rigidbody>().mass;
+            j.connectedMassScale = 1f;
+        }
+
+        // Continue for all children...
+        for (int childId = 0; childId < root.childCount; ++childId)
+        {
+            NormlaizeMass(root.GetChild(childId));
+        }
+    }
+
+    void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            SetLayerRecursively(obj.transform.GetChild(i).gameObject, layer);
+        }
     }
 
     void InitJoint(ref CharacterJoint joint, LimbType type = LimbType.LimbType_Arm)
@@ -159,6 +197,7 @@ public class SocketComponent : MonoBehaviour
             transform.parent = null;
             m_isPlugged = false;
             getRigidBody().isKinematic = false;
+            SetLayerRecursively(gameObject, 0);
             Destroy(m_joint);
         }
     }

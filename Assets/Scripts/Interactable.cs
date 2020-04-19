@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if (m_iconObj != null)
-            m_iconObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2.0f);
+            m_iconObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.2f);
     }
 
     public void ShowIcon()

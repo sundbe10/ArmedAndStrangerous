@@ -35,23 +35,31 @@ public class LimbPickup : MonoBehaviour
         }
     }
 
+    SocketComponent GetSocketCandidate(GameObject obj)
+    {
+        var socketObj = obj.GetComponent<SocketComponent>();
+        if (socketObj == null)
+            socketObj = obj.GetComponentInParent<SocketComponent>();
+
+        return socketObj;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TriggerEnter!");
-        var socketObj = other.GetComponent<SocketComponent>();
-        if (socketObj != null)
+
+        var socketObj = GetSocketCandidate(other.gameObject);
+        if (socketObj != null && socketObj.socketMode != SocketComponent.SocketMode.SocketMode_Hole && !socketObj.IsPlugged())
         {
             Debug.Log("Found Object!");
             m_pickupCandidates.Add(socketObj);
             socketObj.GetComponent<Interactable>().ShowIcon();
-
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var socketObj = other.GetComponent<SocketComponent>();
-        if (socketObj != null)
+        var socketObj = GetSocketCandidate(other.gameObject);
+        if (socketObj != null && socketObj.socketMode != SocketComponent.SocketMode.SocketMode_Hole)
         {
             m_pickupCandidates.Remove(socketObj);
             socketObj.GetComponent<Interactable>().HideIcon();
