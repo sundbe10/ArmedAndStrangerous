@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5176164116538074345}
   - component: {fileID: 3950492208823503076}
   - component: {fileID: 2973571077756565129}
-  - component: {fileID: 2191685121880808663}
   - component: {fileID: 7265650082838471409}
   m_Layer: 0
   m_Name: pu_Halberd
@@ -82,20 +81,6 @@ MonoBehaviour:
   socketOffset: {x: 0, y: 0.34, z: 0}
   axis: {x: 0, y: 1, z: 0}
   rootBody: {fileID: 0}
---- !u!114 &2191685121880808663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176164116538074347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f553589b721c7419e01b6a9622a021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptIcon: {fileID: 7844682269212497367, guid: 7174c4259887e3a41974e70827c9173a,
-    type: 3}
 --- !u!136 &7265650082838471409
 CapsuleCollider:
   m_ObjectHideFlags: 0
