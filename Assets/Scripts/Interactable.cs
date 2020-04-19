@@ -16,12 +16,10 @@ public class Interactable : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (m_iconObj != null)
             m_iconObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2.5f);
-
-
     }
 
     private void OnTriggerEnter(Collider other)
