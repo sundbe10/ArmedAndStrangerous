@@ -31,17 +31,17 @@ public class PlayerMove : MonoBehaviour
         moveDirection *= speed;
 
         if(moveDirection.magnitude > 0) {
-            animator.SetBool("Walk Forward", true);
+            animator.SetBool("Run", true);
             transform.rotation = Quaternion.LookRotation(moveDirection);
         }
         else {
-            animator.SetBool("Walk Forward", false);
+            animator.SetBool("Run", false);
         }
 
         if(Input.GetButtonDown("Punch"))
         {
             Debug.Log("test");
-            animator.SetTrigger("PunchTrigger");
+            animator.SetTrigger("Punch");
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
