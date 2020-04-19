@@ -1331,6 +1331,8 @@ GameObject:
   - component: {fileID: 5447617310910466542}
   - component: {fileID: 1065913658}
   - component: {fileID: 4258752055695759280}
+  - component: {fileID: -2654934263725957974}
+  - component: {fileID: 5692147221852787058}
   m_Layer: 0
   m_Name: Peasant
   m_TagString: Untagged
@@ -1396,16 +1398,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c1b4edf83a4bbc86e8fc5fdeef23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 0
   hipsOffset: {x: 0, y: 0, z: 0}
   skins:
   - {fileID: 1700849930442817909}
   - {fileID: 1700849930442720177}
   - {fileID: 1700849930442814105}
   - {fileID: 1700849930442805275}
-  explosion: {fileID: 100000, guid: ab1112643ee572748b01dede71158272, type: 3}
-  dropObjects:
-  - {fileID: 582801812216840378, guid: 62798cf41ac03d54484905c5e218695a, type: 3}
-  - {fileID: 5176164116538074347, guid: 4bbc31971232113468fff1031d1ef4c1, type: 3}
   health: 10
   speed: 1
 --- !u!136 &1065913658
@@ -1438,6 +1437,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-2654934263725957974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700849930442780057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cb29ee0bf01442881d17e363c10ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropObjects:
+  - {fileID: 582801812216840378, guid: 62798cf41ac03d54484905c5e218695a, type: 3}
+  - {fileID: 5176164116538074347, guid: 4bbc31971232113468fff1031d1ef4c1, type: 3}
+  explosion: {fileID: 100000, guid: ab1112643ee572748b01dede71158272, type: 3}
+--- !u!135 &5692147221852787058
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700849930442780057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1700849930442780191
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,24 +6,29 @@ enum PeasantSate
 {
     IDLE,
     WALKING,
+    RUNNING,
+    ATTACKING,
     HIT,
     DEAD
 }
 
+[RequireComponent(typeof(DropObjects))]
 public class PeasantController : MonoBehaviour
 {
     CharacterController characterController;
     Animator animator;
     PeasantSate state;
 
+    public bool canAttack;
     public Vector3 hipsOffset;
     public GameObject[] skins;
-    public GameObject explosion;
-    public GameObject[] dropObjects;
     public float health = 10;
-    public float speed = 3.0f;
+    public float speed = 1.0f;
+    public float runSpeed = 3.0f;
 
     private Vector3 moveDirection = Vector3.zero;
+    private GameObject target;
+    private Coroutine coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +37,10 @@ public class PeasantController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.Play("Idle");
 
-        skins[Random.Range(0, skins.Length)].SetActive(true);
+        if (skins.Length > 0)
+        {
+            skins[Random.Range(0, skins.Length)].SetActive(true);
+        }
         ChangeState(PeasantSate.IDLE);
     }
 
@@ -47,6 +55,16 @@ public class PeasantController : MonoBehaviour
                     transform.position += transform.forward * speed * Time.deltaTime;
                     break;
                 }
+            case PeasantSate.RUNNING:
+                {
+                    float singleStep = speed * Time.deltaTime;
+                    var newDirection = transform.position - target.transform.position;
+                    newDirection.y = 0;
+                    Debug.DrawRay(transform.position, newDirection, Color.red);
+                    transform.rotation = Quaternion.LookRotation(newDirection);
+                    transform.position += transform.forward * runSpeed * Time.deltaTime;
+                    break;
+                }
         }
     }
 
@@ -55,6 +73,21 @@ public class PeasantController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Hit(5);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            target = other.gameObject;
+            if(canAttack)
+            {
+                animator.SetTrigger("Engage");
+            }
+            else
+            { 
+                ChangeState(PeasantSate.RUNNING);
+            }
         }
     }
 
@@ -67,14 +100,20 @@ public class PeasantController : MonoBehaviour
             case PeasantSate.IDLE:
                 {
                     animator.SetFloat("Speed", 0);
-                    StartCoroutine(StateTimer(PeasantSate.WALKING));
+                    coroutine = StartCoroutine(StateTimer(PeasantSate.WALKING, 3, 7));
                     break;
                 }
             case PeasantSate.WALKING:
                 {
                     transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                     animator.SetFloat("Speed", speed);
-                    StartCoroutine(StateTimer(PeasantSate.IDLE));
+                    coroutine = StartCoroutine(StateTimer(PeasantSate.IDLE, 3, 7));
+                    break;
+                }
+            case PeasantSate.RUNNING:
+                {
+                    StopCoroutine(coroutine);
+                    animator.SetFloat("Speed", runSpeed);
                     break;
                 }
             case PeasantSate.HIT:
@@ -86,8 +125,7 @@ public class PeasantController : MonoBehaviour
             case PeasantSate.DEAD:
                 {
                     animator.SetFloat("Speed", 0);
-                    Instantiate(explosion, transform.position, Quaternion.identity);
-                    DropObjects();
+                    GetComponent<DropObjects>().Drop();
                     Destroy(gameObject);
                     break;
                 }
@@ -105,17 +143,10 @@ public class PeasantController : MonoBehaviour
         }
     }
 
-    private IEnumerator StateTimer(PeasantSate newState)
+    private IEnumerator StateTimer(PeasantSate newState, float minTime, float maxTime)
     {
         yield return new WaitForSeconds(Random.Range(3, 7));
         ChangeState(newState);
     }
 
-    private void DropObjects()
-    {
-        foreach(var dropObject in dropObjects)
-        {
-            Instantiate(dropObject, transform.position + Vector3.up, Quaternion.identity);
-        }
-    }
 }

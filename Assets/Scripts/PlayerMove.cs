@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetTrigger("Punch");
         }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        // characterController.Move(moveDirection * Time.deltaTime);
     }
 
     private void LateUpdate()

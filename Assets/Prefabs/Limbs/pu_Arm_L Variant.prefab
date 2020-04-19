@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 4294804950740233389, guid: 51fe2cb23aa97a04ea392996f6a639c0,
         type: 3}
       propertyPath: m_Name
-      value: pu_Arm_L
+      value: pu_Arm_L Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4294804950740233390, guid: 51fe2cb23aa97a04ea392996f6a639c0,
         type: 3}
@@ -121,6 +121,7 @@ PrefabInstance:
     - {fileID: 4294804952499592906, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
     - {fileID: 4294804952499592909, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
     - {fileID: 4294804952499592907, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
+    - {fileID: 4294804950740233391, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
 --- !u!4 &582801812216840377 stripped
 Transform:
