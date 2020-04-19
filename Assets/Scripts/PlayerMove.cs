@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerMove : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         animator.Play("Idle");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,8 @@ public class PlayerMove : MonoBehaviour
             animator.SetTrigger("Punch");
         }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        //characterController.Move(moveDirection * Time.deltaTime);
+        transform.position += moveDirection * Time.deltaTime;
     }
 
     private void LateUpdate()

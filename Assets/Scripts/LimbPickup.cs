@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,6 @@ public class LimbPickup : MonoBehaviour
     public GameObject radialPicker;
     public Text radialPickerLabel;
     private List<SocketComponent> m_pickupCandidates;
-    private Canvas s_canvas;
     private RadialState m_state;
 
     enum RadialState
@@ -25,7 +25,6 @@ public class LimbPickup : MonoBehaviour
     {
         m_state = RadialState.None;
         m_pickupCandidates = new List<SocketComponent>();
-        s_canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -37,15 +36,6 @@ public class LimbPickup : MonoBehaviour
             radialPicker.SetActive(true);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().objectName = m_pickupCandidates.First().GetComponent<Interactable>().itemName;
             radialPickerLabel.text = m_pickupCandidates.First().GetComponent<Interactable>().itemName;
-
-                //foreach (var socket in bodySockets)
-                //{
-                //    if (socket.IsAvailable())
-                //    {
-                //        m_pickupCandidates.First().PlugIntoSocket(socket);
-                //        break;
-                //    }
-                //}
         }
         else if (Input.GetButton("Fire2"))
         {
@@ -59,14 +49,20 @@ public class LimbPickup : MonoBehaviour
             radialPicker.SetActive(false);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().objectName = "";
         }
+
+        Debug.Log(m_pickupCandidates.Count);
     }
 
     public void SetPickupDestination(int holeIndex)
     {
         if (m_state == RadialState.Pickup)
         {
-            m_pickupCandidates.First().PlugIntoSocket(bodySockets[holeIndex]);
-            radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable(m_pickupCandidates.First().GetComponent<Interactable>().itemName);
+            var obj = m_pickupCandidates.FirstOrDefault();
+            var interactable = obj.GetComponent<Interactable>();
+            obj.PlugIntoSocket(bodySockets[holeIndex]);
+            radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable(interactable.itemName);
+            m_pickupCandidates.Remove(obj);
+            interactable.HideIcon();
         }
         else if (m_state == RadialState.Remove)
         {
@@ -79,7 +75,7 @@ public class LimbPickup : MonoBehaviour
     {
         var socketObj = obj.GetComponent<SocketComponent>();
         if (socketObj == null)
-            socketObj = obj.GetComponentInParent<SocketComponent>();
+            socketObj = obj.transform.root.GetComponent<SocketComponent>();
 
         return socketObj;
     }
@@ -90,9 +86,11 @@ public class LimbPickup : MonoBehaviour
         var socketObj = GetSocketCandidate(other.gameObject);
         if (socketObj != null && socketObj.socketMode != SocketComponent.SocketMode.SocketMode_Hole && !socketObj.IsPlugged())
         {
-            Debug.Log("Found Object!");
-            m_pickupCandidates.Add(socketObj);
-            socketObj.GetComponent<Interactable>().ShowIcon();
+            if (!m_pickupCandidates.Contains(socketObj))
+            {
+                m_pickupCandidates.Add(socketObj);
+                socketObj.GetComponent<Interactable>().ShowIcon();
+            }
         }
     }
 

@@ -372,6 +372,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6131923678775800996, guid: b359f8897200dae4c9ebccf5c5d59663,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCanvas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b359f8897200dae4c9ebccf5c5d59663, type: 3}
 --- !u!1 &577803675
@@ -464,7 +469,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &763292002
 GameObject:
@@ -724,6 +729,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frankenstein_Torso
       objectReference: {fileID: 0}
+    - target: {fileID: 3606836696747354990, guid: a4a94fb6c055fd34a92a495014ae97db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606836697203554064, guid: a4a94fb6c055fd34a92a495014ae97db,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000008940696
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a94fb6c055fd34a92a495014ae97db, type: 3}
 --- !u!1001 &8915796388223433551
@@ -771,7 +786,7 @@ PrefabInstance:
     - target: {fileID: 725950838904358402, guid: eaf8ad74df4424298b73366f103ad618,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 725950838904358402, guid: eaf8ad74df4424298b73366f103ad618,
         type: 3}

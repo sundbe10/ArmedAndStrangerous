@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        s_canvas = FindObjectOfType<Canvas>();
+        s_canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
     }
 
     // Update is called once per frame

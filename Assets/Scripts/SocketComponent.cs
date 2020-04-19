@@ -92,6 +92,7 @@ public class SocketComponent : MonoBehaviour
 
             SetLayerRecursively(gameObject, 8);
             getRigidBody().isKinematic = true;
+            getRigidBody().useGravity = false;
 
             //NormlaizeMass(holeSocket.rootBody.transform);
 
@@ -195,6 +196,7 @@ public class SocketComponent : MonoBehaviour
             transform.parent = null;
             m_isPlugged = false;
             getRigidBody().isKinematic = false;
+            getRigidBody().useGravity = true;
             SetLayerRecursively(gameObject, 0);
             if (m_joint)
             {

@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socketMode: 1
-  socketOffset: {x: -0.11, y: -0.06, z: 0}
-  axis: {x: -1, y: 0.5, z: 0}
+  socketOffset: {x: -0.15, y: -0.03, z: -0.04}
+  axis: {x: -1, y: 0.89, z: -0.07}
   rootBody: {fileID: 0}
 --- !u!114 &7882004042759697310
 MonoBehaviour:
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socketMode: 1
-  socketOffset: {x: -0.11, y: 0.06, z: 0}
-  axis: {x: -1, y: -0.5, z: 0}
+  socketOffset: {x: -0.15, y: 0.03, z: -0.04}
+  axis: {x: -1, y: -0.89, z: 0.07}
   rootBody: {fileID: 0}
 --- !u!114 &238613880723748159
 MonoBehaviour:
@@ -172,6 +172,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 725950838904358402}
     m_Modifications:
+    - target: {fileID: 1775711725758468238, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000008940696
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775711727254850800, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965296612707536360, guid: 368747bbd8c8c73469c68fc54735f540,
         type: 3}
       propertyPath: m_LocalPosition.x
