@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
 
         if(Input.GetButtonDown("Punch"))
         {
-            Debug.Log("test");
+            //Debug.Log("test");
             animator.SetTrigger("Punch");
         }
 

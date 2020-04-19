@@ -7,7 +7,6 @@ public class Interactable : MonoBehaviour
     public GameObject promptIcon;
     Canvas s_canvas;
     private GameObject m_iconObj;
-    private Vector3 m_iconPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -19,20 +18,16 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if (m_iconObj != null)
-            m_iconObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2.5f);
+            m_iconObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2.0f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ShowIcon()
     {
-        if (other.tag == "Player")
-        {
-            // show icon
-            if (m_iconObj == null)
-                m_iconObj = Instantiate(promptIcon, s_canvas.transform);
-        }
+        if (m_iconObj == null)
+            m_iconObj = Instantiate(promptIcon, s_canvas.transform);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void HideIcon()
     {
         Destroy(m_iconObj);
     }

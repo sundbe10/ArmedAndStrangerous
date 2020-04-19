@@ -41,7 +41,7 @@ public class PeasantController : MonoBehaviour
         {
             case PeasantSate.WALKING:
                 {
-                    Debug.Log("Walk");
+                    //Debug.Log("Walk");
                     transform.position += transform.forward * speed * Time.deltaTime;
                     break;
                 }

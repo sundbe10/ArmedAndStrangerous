@@ -35,6 +35,11 @@ public class SocketComponent : MonoBehaviour
         return m_joint;
     }
 
+    public bool IsAvailable()
+    {
+        return !m_hasPlug;
+    }
+
     public Rigidbody getRigidBody()
     {
         return rootBody;

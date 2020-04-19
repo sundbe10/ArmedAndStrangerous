@@ -10,7 +10,6 @@ public class TestEvents : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Plug());
     }
 
     // Update is called once per frame
