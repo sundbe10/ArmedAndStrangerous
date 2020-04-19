@@ -5,7 +5,9 @@ using UnityEngine;
 enum PeasantSate
 {
     IDLE,
-    WALKING
+    WALKING,
+    HIT,
+    DEAD
 }
 
 public class PeasantController : MonoBehaviour
@@ -16,10 +18,10 @@ public class PeasantController : MonoBehaviour
 
     public Vector3 hipsOffset;
     public GameObject[] skins;
-
+    public GameObject explosion;
+    public GameObject[] dropObjects;
+    public float health = 10;
     public float speed = 3.0f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -30,7 +32,7 @@ public class PeasantController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.Play("Idle");
 
-        skins[Random.Range(0, skins.Length - 1)].SetActive(true);
+        skins[Random.Range(0, skins.Length)].SetActive(true);
         ChangeState(PeasantSate.IDLE);
     }
 
@@ -48,7 +50,15 @@ public class PeasantController : MonoBehaviour
         }
     }
 
-    void ChangeState(PeasantSate newState)
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Hit(5);
+        }
+    }
+
+    private void ChangeState(PeasantSate newState)
     {
         state = newState;
 
@@ -67,17 +77,45 @@ public class PeasantController : MonoBehaviour
                     StartCoroutine(StateTimer(PeasantSate.IDLE));
                     break;
                 }
+            case PeasantSate.HIT:
+                {
+                    animator.SetFloat("Speed", 0);
+                    animator.SetTrigger("Hit");
+                    break;
+                }
+            case PeasantSate.DEAD:
+                {
+                    animator.SetFloat("Speed", 0);
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    DropObjects();
+                    Destroy(gameObject);
+                    break;
+                }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Hit(float damage)
     {
-       
+        health -= damage;
+        ChangeState(PeasantSate.HIT);
+
+        if (health <= 0)
+        {
+            ChangeState(PeasantSate.DEAD);
+        }
     }
 
-    IEnumerator StateTimer(PeasantSate newState)
+    private IEnumerator StateTimer(PeasantSate newState)
     {
         yield return new WaitForSeconds(Random.Range(3, 7));
         ChangeState(newState);
+    }
+
+    private void DropObjects()
+    {
+        foreach(var dropObject in dropObjects)
+        {
+            Instantiate(dropObject, transform.position + Vector3.up, Quaternion.identity);
+        }
     }
 }

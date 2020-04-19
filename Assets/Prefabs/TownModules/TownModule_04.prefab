@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 459131554654521469}
   - component: {fileID: 9059129790931369447}
   - component: {fileID: 1527870243}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +828,7 @@ GameObject:
   - component: {fileID: 1470258896714072401}
   - component: {fileID: 1787001386707366196}
   - component: {fileID: 1088752637}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 6723152406284402720}
   - component: {fileID: 3264524496997875822}
   - component: {fileID: 1069523566}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 2780526450128276057}
   - component: {fileID: 2467247422202456925}
   - component: {fileID: 191999661}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 1871966437509650586}
   - component: {fileID: 4492577949462184423}
   - component: {fileID: 1491037576}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1437,7 +1437,7 @@ GameObject:
   - component: {fileID: 2327087088043669126}
   - component: {fileID: 6152000224273846273}
   - component: {fileID: 794739904}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SM_Env_Path_Tile_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3821,7 +3821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 113036, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 488878, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
       propertyPath: m_LocalPosition.x

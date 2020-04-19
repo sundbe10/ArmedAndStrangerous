@@ -1399,12 +1399,15 @@ MonoBehaviour:
   hipsOffset: {x: 0, y: 0, z: 0}
   skins:
   - {fileID: 1700849930442817909}
-  - {fileID: 1700849930442803285}
+  - {fileID: 1700849930442720177}
   - {fileID: 1700849930442814105}
   - {fileID: 1700849930442805275}
+  explosion: {fileID: 100000, guid: ab1112643ee572748b01dede71158272, type: 3}
+  dropObjects:
+  - {fileID: 582801812216840378, guid: 62798cf41ac03d54484905c5e218695a, type: 3}
+  - {fileID: 5176164116538074347, guid: 4bbc31971232113468fff1031d1ef4c1, type: 3}
+  health: 10
   speed: 1
-  jumpSpeed: 8
-  gravity: 20
 --- !u!136 &1065913658
 CapsuleCollider:
   m_ObjectHideFlags: 0
