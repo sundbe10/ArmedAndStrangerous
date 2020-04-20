@@ -51,7 +51,7 @@ public class SocketComponent : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_isPlugged = false;
         m_hasPlug = false;
@@ -185,6 +185,8 @@ public class SocketComponent : MonoBehaviour
 
     public void Unplug()
     {
+        Debug.Log(m_hasPlug);
+        Debug.Log(m_isPlugged);
         if (m_hasPlug)
         {
             m_attachedPlug.Unplug();

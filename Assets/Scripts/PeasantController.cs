@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum PeasantSate
 {
+    AWAKE,
     IDLE,
     WALKING,
     RUNNING,
@@ -14,6 +15,8 @@ public enum PeasantSate
 }
 
 [RequireComponent(typeof(DropObjects))]
+[RequireComponent(typeof(RandomWeaponController))]
+
 public class PeasantController : MonoBehaviour
 {
     CharacterController characterController;
@@ -29,6 +32,7 @@ public class PeasantController : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private GameObject target;
+    private bool engaged;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +45,9 @@ public class PeasantController : MonoBehaviour
         {
             skins[Random.Range(0, skins.Length)].SetActive(true);
         }
+
+        Arm();
+
         ChangeState(PeasantSate.IDLE);
     }
 
@@ -115,17 +122,21 @@ public class PeasantController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            animator.SetTrigger("Disengage");
-            ChangeState(PeasantSate.IDLE);
+            if (engaged)
+            {
+                animator.SetTrigger("Disengage");
+                ChangeState(PeasantSate.IDLE);
+            }
         }
     }
 
     private void ChangeState(PeasantSate newState)
     {
+        Debug.Log(newState);
         if (newState == state) return;
 
         state = newState;
@@ -141,6 +152,7 @@ public class PeasantController : MonoBehaviour
                 }
             case PeasantSate.WALKING:
                 {
+                    Debug.Log("Walk");
                     transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                     animator.SetFloat("Speed", speed);
                     StartCoroutine(StateTimer(PeasantSate.IDLE, 3, 7));
@@ -154,6 +166,7 @@ public class PeasantController : MonoBehaviour
             case PeasantSate.ENGAGED:
                 {
                     animator.SetTrigger("Engage");
+                    engaged = true;
                     animator.SetFloat("Speed", speed);
                     break;
                 }
@@ -174,11 +187,19 @@ public class PeasantController : MonoBehaviour
             case PeasantSate.DEAD:
                 {
                     animator.SetFloat("Speed", 0);
-                    GetComponentInChildren<SocketComponent>().Unplug();
                     GetComponent<DropObjects>().Drop();
                     Destroy(gameObject);
                     break;
                 }
+        }
+    }
+
+    private void Arm()
+    {
+        if (Random.value < 0.2)
+        {
+            canAttack = true;
+            GetComponent<RandomWeaponController>().Spawn();
         }
     }
 

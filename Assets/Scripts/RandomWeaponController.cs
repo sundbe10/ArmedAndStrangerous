@@ -10,7 +10,7 @@ public class RandomWeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Create(weapons[Random.Range(0, weapons.Length)]);
+
     }
 
     // Update is called once per frame
@@ -19,7 +19,12 @@ public class RandomWeaponController : MonoBehaviour
         
     }
 
-    public void Create(GameObject weapon) 
+    public void Spawn()
+    {
+        Create(weapons[Random.Range(0, weapons.Length)]);
+    }
+
+    private void Create(GameObject weapon) 
     {
         var weaponInstance = Instantiate(weapon, transform.position, Quaternion.identity) as GameObject;
         var socketScript = weaponInstance.GetComponent<SocketComponent>();

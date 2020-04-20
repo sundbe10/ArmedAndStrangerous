@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptIcon: {fileID: 7844682269212497367, guid: 7174c4259887e3a41974e70827c9173a,
     type: 3}
+  itemName: Limb
 --- !u!114 &5192963897015065865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socketMode: 0
   socketOffset: {x: 0, y: 0, z: 0}
-  axis: {x: 0, y: -90, z: 1}
+  axis: {x: 0, y: -1, z: 0}
   rootBody: {fileID: 0}
 --- !u!136 &-128615812525179571
 CapsuleCollider:
