@@ -211,6 +211,7 @@ public class PeasantController : MonoBehaviour
                 {
                     animator.SetFloat("Speed", 0);
                     animator.SetTrigger("Hurt");
+                    StartCoroutine(StateTimer(engaged ? PeasantSate.ENGAGED : PeasantSate.IDLE, 2f, 2f));
                     break;
                 }
             case PeasantSate.DEAD:
