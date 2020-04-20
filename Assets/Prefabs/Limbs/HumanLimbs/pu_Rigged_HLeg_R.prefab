@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthRange: {x: 20, y: 30}
+  speedModifier: 1
   deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
 --- !u!114 &2251628360324936479
 MonoBehaviour:

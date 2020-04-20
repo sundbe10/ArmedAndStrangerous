@@ -40,6 +40,20 @@ public class SocketComponent : MonoBehaviour
         return !m_hasPlug;
     }
 
+    public bool HasConnection()
+    {
+        return m_hasPlug || m_isPlugged;
+    }
+
+    public LimbTraits GetConnectedLimbTraits()
+    {
+        if (m_hasPlug)
+        {
+            return m_attachedPlug.gameObject.GetComponent<LimbTraits>();
+        }
+        return null;
+    }
+
     public bool IsPlugged()
     {
         return m_isPlugged;
@@ -61,7 +75,7 @@ public class SocketComponent : MonoBehaviour
             rootBody = GetComponent<Rigidbody>();
     }
 
-    public bool AttachPlug(SocketComponent plugSocket)
+    private bool AttachPlug(SocketComponent plugSocket)
     {
         if (plugSocket.socketMode == SocketMode.SocketMode_Hole)
             return false;
@@ -95,25 +109,6 @@ public class SocketComponent : MonoBehaviour
         }
         return m_isPlugged;
 
-    }
-
-    private void NormlaizeMass(Transform root)
-    {
-        var j = root.GetComponent<Joint>();
-
-        // Apply the inertia scaling if possible
-        if (j && j.connectedBody)
-        {
-            // Make sure that both of the connected bodies will be moved by the solver with equal speed
-            j.massScale = j.connectedBody.mass / root.GetComponent<Rigidbody>().mass;
-            j.connectedMassScale = 1f;
-        }
-
-        // Continue for all children...
-        for (int childId = 0; childId < root.childCount; ++childId)
-        {
-            NormlaizeMass(root.GetChild(childId));
-        }
     }
 
     void SetLayerRecursively(GameObject obj, int layer)

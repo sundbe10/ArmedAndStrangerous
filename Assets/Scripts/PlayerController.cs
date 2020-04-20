@@ -104,9 +104,10 @@ public class PlayerController : MonoBehaviour
     private void Active()
     {
         UpdateMoveMode();
+        float speedMod = GetLimbSpeedModifier() * (moveMode == MoveMode.Walking ? walkspeed : crawlSpeed);
 
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        moveDirection *= moveMode == MoveMode.Walking ? walkspeed : crawlSpeed;
+        moveDirection *= speedMod;
 
         animator.speed = moveMode == MoveMode.Walking ? 1.25f : 0.8f;
 
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMoveMode()
     {
-        bool hasLegs = !limbComponent.RightLeg.IsAvailable() && !limbComponent.LeftLeg.IsAvailable();
+        bool hasLegs = limbComponent.RightLeg.HasConnection() && limbComponent.LeftLeg.HasConnection();
 
         if (hasLegs)
         {
@@ -157,6 +158,39 @@ public class PlayerController : MonoBehaviour
             hipsOffset = new Vector3(0, -0.7f, 0);
             rotationOffset = new Vector3(80, 0, 0);
         }
+    }
+
+    private float GetLimbSpeedModifier()
+    {
+        float result = 1.0f;
+        if (moveMode == MoveMode.Walking)
+        {
+            if (limbComponent.LeftLeg.HasConnection())
+            {
+                var limbTraits = limbComponent.LeftLeg.GetConnectedLimbTraits();
+                if (limbTraits != null)
+                {
+                    Debug.Log(limbTraits.speedModifier);
+                    result *= limbTraits.speedModifier;
+                }
+                else
+                    Debug.Log("Could not Find LimbTraits on LeftLeg's connected limb");
+            }
+
+            if (limbComponent.RightLeg.HasConnection())
+            {
+                var limbTraits = limbComponent.RightLeg.GetConnectedLimbTraits();
+                if (limbTraits != null)
+                {
+                    Debug.Log(limbTraits.speedModifier);
+                    result *= limbTraits.speedModifier;
+                }
+                else
+                    Debug.Log("Could not Find LimbTraits on RightLeg's connected limb");
+            }
+        }
+
+        return result;
     }
 
     private void LateUpdate()
