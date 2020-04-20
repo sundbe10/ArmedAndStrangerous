@@ -29,7 +29,7 @@ public class ObjectGeneratorController : MonoBehaviour
 
             RaycastHit hit;
             var ray = Physics.Raycast(position + new Vector3(0, 10, 0), Vector3.down, out hit, Mathf.Infinity);
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer(layerMask))
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer(layerMask) || string.IsNullOrEmpty(layerMask))
             {
                 Instantiate(prefab, position, Quaternion.Euler(0, Random.Range(0, 360), 0));
                 objectsCreated++;

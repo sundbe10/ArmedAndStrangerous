@@ -1503,8 +1503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 5176164116538074347, guid: 4bbc31971232113468fff1031d1ef4c1, type: 3}
-  - {fileID: 3405766530434181757, guid: 77fa035929c4c4ad7878ac05347a20ed, type: 3}
+  - {fileID: 6714112263009838925, guid: 1018f0c0a9e0f3d49ad1e2068681f6ac, type: 3}
   socket: {fileID: 1700849930442722159}
 --- !u!114 &797864329567450820
 MonoBehaviour:
@@ -3764,7 +3763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1700849930443157331
 Transform:
   m_ObjectHideFlags: 0
