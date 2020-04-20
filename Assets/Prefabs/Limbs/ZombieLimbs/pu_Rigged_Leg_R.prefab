@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4294804950740233391}
   - component: {fileID: 5376642871095607458}
   - component: {fileID: 6128102408286109391}
+  - component: {fileID: -3880615548680414795}
   m_Layer: 0
   m_Name: pu_Rigged_Leg_R
   m_TagString: Untagged
@@ -155,6 +156,19 @@ MonoBehaviour:
   socketOffset: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: -1, z: 0}
   rootBody: {fileID: 0}
+--- !u!114 &-3880615548680414795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294804950740233389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07e1d63c59f54d75b8c06f10f0e87e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!54 &8918517507715089015
 Rigidbody:
   m_ObjectHideFlags: 0

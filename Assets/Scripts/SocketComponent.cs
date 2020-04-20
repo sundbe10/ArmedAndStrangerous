@@ -89,7 +89,6 @@ public class SocketComponent : MonoBehaviour
             transform.position = holeSocket.transform.position + holeSocket.transform.TransformVector(holeSocket.socketOffset) - transform.TransformVector(socketOffset);
 
             SetLayerRecursively(gameObject, holeSocket.transform.root.gameObject.layer);
-            Debug.Log(getRigidBody().name);
             getRigidBody().isKinematic = true;
             getRigidBody().useGravity = false;
 

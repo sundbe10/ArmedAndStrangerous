@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 5086979081158872838}
   - component: {fileID: -3067864440955738556}
   - component: {fileID: 4536250319778686777}
+  - component: {fileID: 1149653897108635939}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -360,10 +361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c1b4edf83a4bbc86e8fc5fdeef23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canAttack: 0
+  state: 0
+  characterAttack: {fileID: 0}
+  armedProbability: 0
   hipsOffset: {x: 0, y: 0, z: 0}
   skins: []
-  health: 5
   speed: 0.3
   runSpeed: 1
 --- !u!136 &-3067864440955738556
@@ -396,6 +398,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1149653897108635939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127253908192536504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637d117e675c34ab1885963d6c9b6ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  healthChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3223682776027517098
 GameObject:
   m_ObjectHideFlags: 0
