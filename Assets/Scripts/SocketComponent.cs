@@ -51,7 +51,7 @@ public class SocketComponent : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_isPlugged = false;
         m_hasPlug = false;
@@ -87,20 +87,10 @@ public class SocketComponent : MonoBehaviour
             transform.parent = holeSocket.transform;
             transform.localRotation = Quaternion.FromToRotation(axis, holeSocket.axis);
             transform.position = holeSocket.transform.position + holeSocket.transform.TransformVector(holeSocket.socketOffset) - transform.TransformVector(socketOffset);
-            //m_joint = gameObject.AddComponent<FixedJoint>();
-            //m_joint.connectedBody = getRigidBody();
 
-            SetLayerRecursively(gameObject, 8);
+            SetLayerRecursively(gameObject, holeSocket.transform.root.gameObject.layer);
             getRigidBody().isKinematic = true;
             getRigidBody().useGravity = false;
-
-            //NormlaizeMass(holeSocket.rootBody.transform);
-
-            //InitJoint(ref m_joint);
-            //m_joint.connectedBody = holeSocket.getRigidBody();
-            //m_joint.autoConfigureConnectedAnchor = false;
-            //m_joint.anchor = socketOffset;
-            //m_joint.connectedAnchor = -0.2f * holeSocket.axis;
 
         }
         return m_isPlugged;
@@ -133,68 +123,32 @@ public class SocketComponent : MonoBehaviour
         {
             SetLayerRecursively(obj.transform.GetChild(i).gameObject, layer);
         }
-    }
-
-    void InitJoint(ref CharacterJoint joint, LimbType type = LimbType.LimbType_Arm)
-    {
-        if (type == LimbType.LimbType_Arm)
-        {
-            var ltl = new SoftJointLimit();
-            ltl.limit = -70;
-            joint.lowTwistLimit = ltl;
-
-            var htl = new SoftJointLimit();
-            htl.limit = 10;
-            joint.highTwistLimit = htl;
-
-            var s1l = new SoftJointLimit();
-            s1l.limit = 0;
-            joint.swing1Limit = s1l;
-
-            var s2l = new SoftJointLimit();
-            s2l.limit = 50;
-            joint.swing2Limit = s2l;
-
-            joint.axis = new Vector3(1, 0, 0);
-            joint.swingAxis = new Vector3(0, -1, 0);
-        }
-
-        else if (type == LimbType.LimbType_Leg)
-        {
-            var ltl = new SoftJointLimit();
-            ltl.limit = -20;
-            joint.lowTwistLimit = ltl;
-
-            var htl = new SoftJointLimit();
-            htl.limit = 70;
-            joint.highTwistLimit = htl;
-
-            var s1l = new SoftJointLimit();
-            s1l.limit = 30;
-            joint.swing1Limit = s1l;
-
-            var s2l = new SoftJointLimit();
-            s2l.limit = 0;
-            joint.swing2Limit = s2l;
-
-            joint.axis = new Vector3(0, 0, 1);
-            joint.swingAxis = new Vector3(0, 1, 0);
-        }
-    }    
+    }   
 
     public void Unplug()
     {
         if (m_hasPlug)
         {
-            m_attachedPlug.Unplug();
+            if (m_attachedPlug.IsPlugged())
+                m_attachedPlug.Unplug();
+
             m_attachedPlug = null;
             m_hasPlug = false;
         }
         
         if (m_isPlugged)
         {
-            transform.parent = null;
             m_isPlugged = false;
+            var hole = transform.parent.GetComponent<SocketComponent>();
+            hole.Unplug();
+            
+            var pickupComp = transform.root.GetComponentInChildren<LimbPickup>();
+            if (pickupComp != null)
+            {
+                pickupComp.OnPlugRemoved(hole);
+            }
+            
+            transform.parent = null;
             getRigidBody().isKinematic = false;
             getRigidBody().useGravity = true;
             SetLayerRecursively(gameObject, 0);

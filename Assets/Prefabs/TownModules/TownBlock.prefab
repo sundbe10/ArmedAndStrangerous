@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8206859324801437148}
   - component: {fileID: 3197491780579469812}
+  - component: {fileID: 4523528603583706294}
+  - component: {fileID: 5362459834863724752}
+  - component: {fileID: 5553685862672158694}
   m_Layer: 0
   m_Name: PeasantGenerator
   m_TagString: Untagged
@@ -46,6 +49,57 @@ MonoBehaviour:
   prefab: {fileID: 1700849930442780057, guid: 1bc32e7f9e7a3403082a25967d95c975, type: 3}
   numObjectsMin: 2
   numObjectsMax: 5
+  containerObject: {fileID: 5756547368426544106}
+  layerMask: Ground
+--- !u!114 &4523528603583706294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506472757561911506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff2f7dfc352244bab2d2998227ecedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3127253908192536504, guid: bcf9650a54f30f241974062da60d8db0, type: 3}
+  numObjectsMin: 1
+  numObjectsMax: 10
+  containerObject: {fileID: 5756547368426544106}
+  layerMask: Ground
+--- !u!114 &5362459834863724752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506472757561911506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff2f7dfc352244bab2d2998227ecedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6714112263009838925, guid: 1018f0c0a9e0f3d49ad1e2068681f6ac, type: 3}
+  numObjectsMin: 1
+  numObjectsMax: 7
+  containerObject: {fileID: 5756547368426544106}
+  layerMask: 
+--- !u!114 &5553685862672158694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506472757561911506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff2f7dfc352244bab2d2998227ecedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4285891048728590606, guid: 3c5f2fe3176ab44609ecfa8d272ed0bf, type: 3}
+  numObjectsMin: 0
+  numObjectsMax: 3
   containerObject: {fileID: 5756547368426544106}
   layerMask: Ground
 --- !u!1 &5756547368426544106
