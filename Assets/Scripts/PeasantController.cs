@@ -79,6 +79,11 @@ public class PeasantController : MonoBehaviour
                 }
             case PeasantSate.RUNNING:
                 {
+                    if (!target)
+                    {
+                        ChangeState(PeasantSate.IDLE);
+                    }
+
                     float singleStep = speed * Time.deltaTime;
                     var newDirection = transform.position - target.transform.position;
                     newDirection.y = 0;
@@ -96,6 +101,13 @@ public class PeasantController : MonoBehaviour
                 }
             case PeasantSate.ENGAGED:
                 {
+                    if(!target)
+                    {
+                        animator.SetTrigger("Disengage");
+                        ChangeState(PeasantSate.IDLE);
+                        return;
+                    }
+
                     float singleStep = speed * Time.deltaTime;
                     var newDirection = target.transform.position - transform.position;
                     newDirection.y = 0;
@@ -110,8 +122,9 @@ public class PeasantController : MonoBehaviour
                 }
         }
     }
+    
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -179,6 +192,7 @@ public class PeasantController : MonoBehaviour
                 }
             case PeasantSate.ENGAGED:
                 {
+
                     animator.SetTrigger("Engage");
                     engaged = true;
                     animator.SetFloat("Speed", speed);

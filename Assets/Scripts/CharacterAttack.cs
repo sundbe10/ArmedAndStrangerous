@@ -20,7 +20,8 @@ public class CharacterAttack : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
         if (hasAttacked) return;
         Damage(other.gameObject);

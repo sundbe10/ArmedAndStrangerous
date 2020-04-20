@@ -1428,7 +1428,7 @@ MonoBehaviour:
   - {fileID: 1700849930442814105}
   - {fileID: 1700849930442805275}
   speed: 1
-  runSpeed: 3
+  runSpeed: 2
 --- !u!136 &1065913658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1503,7 +1503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 6714112263009838925, guid: 1018f0c0a9e0f3d49ad1e2068681f6ac, type: 3}
+  - {fileID: 1283943989263094, guid: b4d0f82eedb95f543ab0961de54f43fd, type: 3}
+  - {fileID: 1247529560651778, guid: 004a9151c34cdb34a895313a480b2d87, type: 3}
   socket: {fileID: 1700849930442722159}
 --- !u!114 &797864329567450820
 MonoBehaviour:
