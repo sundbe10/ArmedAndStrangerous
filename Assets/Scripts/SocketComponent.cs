@@ -90,7 +90,7 @@ public class SocketComponent : MonoBehaviour
             //m_joint = gameObject.AddComponent<FixedJoint>();
             //m_joint.connectedBody = getRigidBody();
 
-            SetLayerRecursively(gameObject, holeSocket.gameObject.layer);
+            SetLayerRecursively(gameObject, holeSocket.transform.root.gameObject.layer);
             Debug.Log(getRigidBody().name);
             getRigidBody().isKinematic = true;
             getRigidBody().useGravity = false;
