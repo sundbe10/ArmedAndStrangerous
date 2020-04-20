@@ -82,6 +82,7 @@ public class PeasantController : MonoBehaviour
                     if (!target)
                     {
                         ChangeState(PeasantSate.IDLE);
+                        return;
                     }
 
                     float singleStep = speed * Time.deltaTime;

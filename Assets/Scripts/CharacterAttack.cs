@@ -47,9 +47,8 @@ public class CharacterAttack : MonoBehaviour
         if(characterHealth)
         {
             characterHealth.Hurt(damage);
+            hasAttacked = true;
         }
-
-        hasAttacked = true;
     }
 
     IEnumerator AttackCoolDown()
