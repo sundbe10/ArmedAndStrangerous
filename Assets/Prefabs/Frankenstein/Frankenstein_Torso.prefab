@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socketMode: 1
   socketOffset: {x: -0.07, y: 0, z: 0}
-  axis: {x: -1, y: -0.1, z: 0.1}
+  axis: {x: -1, y: -0.1, z: 0.25}
   rootBody: {fileID: 0}
 --- !u!114 &8836620837846937864
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socketMode: 1
   socketOffset: {x: -0.07, y: 0, z: 0}
-  axis: {x: -1, y: 0.1, z: 0.1}
+  axis: {x: -1, y: 0.1, z: 0.25}
   rootBody: {fileID: 0}
 --- !u!1001 &3074435403239745438
 PrefabInstance:

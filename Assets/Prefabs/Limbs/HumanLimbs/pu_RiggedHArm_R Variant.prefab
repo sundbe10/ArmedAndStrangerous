@@ -142,6 +142,11 @@ PrefabInstance:
       propertyPath: itemName
       value: Human Arm R
       objectReference: {fileID: 0}
+    - target: {fileID: 4733804641660158737, guid: 51fe2cb23aa97a04ea392996f6a639c0,
+        type: 3}
+      propertyPath: deathFx
+      value: 
+      objectReference: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
     - target: {fileID: 5376642871095607458, guid: 51fe2cb23aa97a04ea392996f6a639c0,
         type: 3}
       propertyPath: m_Mass

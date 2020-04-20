@@ -82,6 +82,18 @@ public class LimbPickup : MonoBehaviour
         }
     }
 
+    public void OnPlugRemoved(SocketComponent hole)
+    {
+        for (int i = 0; i < m_bodySockets.Length; i++)
+        {
+            var h = m_bodySockets[i];
+            if (hole == h)
+            {
+                radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[i].setMenuLable("");
+            }
+        }
+    }
+
     SocketComponent GetSocketCandidate(GameObject obj)
     {
         var socketObj = obj.GetComponent<SocketComponent>();

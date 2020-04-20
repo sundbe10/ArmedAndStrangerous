@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4294804950740233391}
   - component: {fileID: 5376642871095607458}
   - component: {fileID: 6128102408286109391}
+  - component: {fileID: -7405739896919277872}
   m_Layer: 0
   m_Name: pu_Rigged_HLeg_L
   m_TagString: Untagged
@@ -156,6 +157,20 @@ MonoBehaviour:
   socketOffset: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: -1, z: 0}
   rootBody: {fileID: 0}
+--- !u!114 &-7405739896919277872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294804950740233389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2ff953cc50c4e48aa103b2c6abe854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthRange: {x: 20, y: 30}
+  deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
 --- !u!54 &2547838612762684585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -345,6 +360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413142908658505859, guid: 56ed9c7a4067c0b4f889b216517d3128,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: -1.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ed9c7a4067c0b4f889b216517d3128, type: 3}

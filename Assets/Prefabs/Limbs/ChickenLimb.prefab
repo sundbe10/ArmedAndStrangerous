@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: -7229387246398502566}
   - component: {fileID: -156774124333185076}
   - component: {fileID: 1986691050621773215}
+  - component: {fileID: 5386465686701585377}
   m_Layer: 0
   m_Name: ChickenLimb
   m_TagString: Untagged
@@ -353,7 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptIcon: {fileID: 7844682269212497367, guid: 7174c4259887e3a41974e70827c9173a,
     type: 3}
-  itemName: Limb
+  itemName: Chicken
 --- !u!114 &1986691050621773215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,3 +371,17 @@ MonoBehaviour:
   socketOffset: {x: 0, y: 0.8, z: 0}
   axis: {x: 0, y: -1, z: 0}
   rootBody: {fileID: 0}
+--- !u!114 &5386465686701585377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401922464176904517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2ff953cc50c4e48aa103b2c6abe854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthRange: {x: 60, y: 90}
+  deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
