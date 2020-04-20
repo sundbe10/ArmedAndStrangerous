@@ -43,7 +43,11 @@ public class LimbTraits : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health -= Time.deltaTime;
+        var socketComponent = GetComponent<SocketComponent>();
+        if (socketComponent.HasConnection() && socketComponent.getRigidBody().gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            health -= Time.deltaTime;
+        }
 
         material.color = Color32.Lerp(Color.white, decayed, (maxHealth - health) / maxHealth);
 

@@ -11,6 +11,7 @@ public enum PeasantSate
     ENGAGED,
     ATTACKING,
     HURT,
+    MOB,
     DEAD
 }
 
@@ -32,9 +33,9 @@ public class PeasantController : MonoBehaviour
     public GameObject[] skins;
     public float speed = 1.0f;
     public float runSpeed = 3.0f;
+    private GameObject target;
 
     private Vector3 moveDirection = Vector3.zero;
-    private GameObject target;
     private bool engaged;
     private bool hasWeapon;
 
@@ -43,6 +44,7 @@ public class PeasantController : MonoBehaviour
     {
         characterHealth = GetComponent<CharacterHealth>();
         animator = GetComponent<Animator>();
+        animator.applyRootMotion = false;
 
         animator.Play("Idle");
 
@@ -61,7 +63,16 @@ public class PeasantController : MonoBehaviour
         // Event Listeners
         characterHealth.healthChange.AddListener(Hurt);
 
-        ChangeState(PeasantSate.IDLE);
+        if (state == PeasantSate.AWAKE)
+        {
+            ChangeState(PeasantSate.IDLE);
+        }
+        else if(state == PeasantSate.MOB)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+            disengageAtDistance = false;
+            ChangeState(PeasantSate.ENGAGED);
+        }
     }
 
     // Update is called once per frame
