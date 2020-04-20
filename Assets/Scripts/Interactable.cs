@@ -32,4 +32,9 @@ public class Interactable : MonoBehaviour
     {
         Destroy(m_iconObj);
     }
+
+    void OnDestroy()
+    {
+        HideIcon();
+    }
 }
