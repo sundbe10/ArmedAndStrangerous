@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum PeasantSate
+public enum PeasantSate
 {
     IDLE,
     WALKING,
     RUNNING,
+    ENGAGED,
     ATTACKING,
-    HIT,
+    HURT,
     DEAD
 }
 
@@ -17,7 +18,7 @@ public class PeasantController : MonoBehaviour
 {
     CharacterController characterController;
     Animator animator;
-    PeasantSate state;
+    public PeasantSate state;
 
     public bool canAttack;
     public Vector3 hipsOffset;
@@ -28,7 +29,6 @@ public class PeasantController : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private GameObject target;
-    private Coroutine coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +49,12 @@ public class PeasantController : MonoBehaviour
     {
         switch(state)
         {
+            case PeasantSate.IDLE:
+                {
+                    break;
+                }
             case PeasantSate.WALKING:
                 {
-                    //Debug.Log("Walk");
                     transform.position += transform.forward * speed * Time.deltaTime;
                     break;
                 }
@@ -61,8 +64,25 @@ public class PeasantController : MonoBehaviour
                     var newDirection = transform.position - target.transform.position;
                     newDirection.y = 0;
                     Debug.DrawRay(transform.position, newDirection, Color.red);
+                    if(newDirection.magnitude > 10)
+                    {
+                        ChangeState(PeasantSate.IDLE);
+                    }
+                    else
+                    {
+                        transform.rotation = Quaternion.LookRotation(newDirection);
+                        transform.position += transform.forward * runSpeed * Time.deltaTime;
+                    }
+                    break;
+                }
+            case PeasantSate.ENGAGED:
+                {
+                    float singleStep = speed * Time.deltaTime;
+                    var newDirection = target.transform.position - transform.position;
+                    newDirection.y = 0;
+                    Debug.DrawRay(transform.position, newDirection, Color.red);
                     transform.rotation = Quaternion.LookRotation(newDirection);
-                    transform.position += transform.forward * runSpeed * Time.deltaTime;
+                    transform.position += transform.forward * speed * Time.deltaTime;
                     break;
                 }
         }
@@ -72,17 +92,21 @@ public class PeasantController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Hit(5);
+            if (state == PeasantSate.ENGAGED)
+            {
+                ChangeState(PeasantSate.ATTACKING);
+            }
+            Hurt(5);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             target = other.gameObject;
             if(canAttack)
             {
-                animator.SetTrigger("Engage");
+                ChangeState(PeasantSate.ENGAGED);
             }
             else
             { 
@@ -91,40 +115,66 @@ public class PeasantController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            animator.SetTrigger("Disengage");
+            ChangeState(PeasantSate.IDLE);
+        }
+    }
+
     private void ChangeState(PeasantSate newState)
     {
-        state = newState;
+        if (newState == state) return;
 
-        switch (state)
+        state = newState;
+        StopAllCoroutines();
+
+        switch (newState)
         {
             case PeasantSate.IDLE:
                 {
                     animator.SetFloat("Speed", 0);
-                    coroutine = StartCoroutine(StateTimer(PeasantSate.WALKING, 3, 7));
+                    StartCoroutine(StateTimer(PeasantSate.WALKING, 3, 7));
                     break;
                 }
             case PeasantSate.WALKING:
                 {
                     transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                     animator.SetFloat("Speed", speed);
-                    coroutine = StartCoroutine(StateTimer(PeasantSate.IDLE, 3, 7));
+                    StartCoroutine(StateTimer(PeasantSate.IDLE, 3, 7));
                     break;
                 }
             case PeasantSate.RUNNING:
                 {
-                    StopCoroutine(coroutine);
                     animator.SetFloat("Speed", runSpeed);
                     break;
                 }
-            case PeasantSate.HIT:
+            case PeasantSate.ENGAGED:
+                {
+                    animator.SetTrigger("Engage");
+                    animator.SetFloat("Speed", speed);
+                    break;
+                }
+            case PeasantSate.ATTACKING:
+                {
+                    Debug.Log("Attack");
+                    animator.SetTrigger("Attack");
+                    animator.SetFloat("Speed", 0);
+                    StartCoroutine(StateTimer(PeasantSate.ENGAGED, 2f, 2f));
+                    break;
+                }
+            case PeasantSate.HURT:
                 {
                     animator.SetFloat("Speed", 0);
-                    animator.SetTrigger("Hit");
+                    animator.SetTrigger("Hurt");
                     break;
                 }
             case PeasantSate.DEAD:
                 {
                     animator.SetFloat("Speed", 0);
+                    GetComponentInChildren<SocketComponent>().Unplug();
                     GetComponent<DropObjects>().Drop();
                     Destroy(gameObject);
                     break;
@@ -132,10 +182,10 @@ public class PeasantController : MonoBehaviour
         }
     }
 
-    private void Hit(float damage)
+    private void Hurt(float damage)
     {
         health -= damage;
-        ChangeState(PeasantSate.HIT);
+        ChangeState(PeasantSate.HURT);
 
         if (health <= 0)
         {

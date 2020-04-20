@@ -3819,10 +3819,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Path_Tile_01 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 113036, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 488878, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.336998
