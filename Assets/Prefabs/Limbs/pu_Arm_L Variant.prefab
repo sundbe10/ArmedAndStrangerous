@@ -87,6 +87,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -26.560001
       objectReference: {fileID: 0}
+    - target: {fileID: 4294804950740233391, guid: 51fe2cb23aa97a04ea392996f6a639c0,
+        type: 3}
+      propertyPath: itemName
+      value: Human Arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733804641660158737, guid: 51fe2cb23aa97a04ea392996f6a639c0,
+        type: 3}
+      propertyPath: deathFx
+      value: 
+      objectReference: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
     - target: {fileID: 5376642871095607458, guid: 51fe2cb23aa97a04ea392996f6a639c0,
         type: 3}
       propertyPath: m_Mass
@@ -121,7 +131,7 @@ PrefabInstance:
     - {fileID: 4294804952499592906, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
     - {fileID: 4294804952499592909, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
     - {fileID: 4294804952499592907, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
-    - {fileID: 4294804950740233391, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
+    - {fileID: 7072117675872425105, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51fe2cb23aa97a04ea392996f6a639c0, type: 3}
 --- !u!4 &582801812216840377 stripped
 Transform:

@@ -4,35 +4,48 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    CharacterController characterController;
     Animator animator;
 
     public Vector3 hipsOffset;
+    public Vector3 rotationOffset;
 
-    public float speed = 3.0f;
+    public float crawlSpeed = 1.5f;
+    public float walkspeed = 3.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
+    enum MoveMode
+    {
+        Crawling = 0,
+        Walking = 1,
+    }
+
     private Vector3 moveDirection = Vector3.zero;
+    private LimbPickup limbComponent;
+    private MoveMode moveMode;
 
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         animator.Play("Idle");
+        moveMode = MoveMode.Crawling;
+        limbComponent = GetComponentInChildren<LimbPickup>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        moveDirection *= speed;
+        UpdateMoveMode();
 
-        if(moveDirection.magnitude > 0) {
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        moveDirection *= moveMode == MoveMode.Walking ? walkspeed : crawlSpeed;
+
+        animator.speed = moveMode == MoveMode.Walking ? 1.25f : 0.8f;
+
+        if (moveDirection.magnitude > 0) {
             animator.SetBool("Run", true);
-            transform.rotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 5.0f * Time.deltaTime);
         }
         else {
             animator.SetBool("Run", false);
@@ -44,7 +57,26 @@ public class PlayerMove : MonoBehaviour
             animator.SetTrigger("Punch");
         }
 
-        // characterController.Move(moveDirection * Time.deltaTime);
+        //characterController.Move(moveDirection * Time.deltaTime);
+        transform.position += moveDirection * Time.deltaTime;
+    }
+
+    private void UpdateMoveMode()
+    {
+        bool hasLegs = !limbComponent.RightLeg.IsAvailable() && !limbComponent.LeftLeg.IsAvailable();
+
+        if (hasLegs)
+        {
+            moveMode = MoveMode.Walking;
+            hipsOffset = new Vector3(0, -0.15f, 0);
+            rotationOffset = Vector3.zero;
+        }
+        else
+        {
+            moveMode = MoveMode.Crawling;
+            hipsOffset = new Vector3(0, -0.7f, 0);
+            rotationOffset = new Vector3(80, 0, 0);
+        }
     }
 
     private void LateUpdate()
@@ -56,13 +88,27 @@ public class PlayerMove : MonoBehaviour
     {
         if (layerIndex == 0)
         {
-            animator.bodyPosition += hipsOffset;
+            animator.bodyPosition += transform.TransformVector(hipsOffset);
+            animator.bodyRotation *= Quaternion.Euler(rotationOffset);
 
-            animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1);
-            animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 1);
-            animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1);
-            animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 1);
+            if (moveMode == MoveMode.Walking)
+            {
+                animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1);
+                animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 1);
+                animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1);
+                animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 1);
+            }
+            else
 
+            {
+                animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+                animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+                animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+                animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+
+                animator.SetLookAtPosition(transform.position + transform.forward * 6.0f);
+                animator.SetLookAtWeight(1.0f, 0.0f, 1.0f, 0.0f, 0.0f);
+            }
         }
     }
 }

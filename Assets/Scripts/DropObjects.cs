@@ -26,6 +26,11 @@ public class DropObjects : MonoBehaviour
         {
             Instantiate(dropObject, transform.position + Vector3.up, Quaternion.identity);
         }
+        foreach (var socket in GetComponentsInChildren<SocketComponent>())
+        {
+            Debug.Log("unplug");
+            socket.Unplug();
+        }
     }
 
 }

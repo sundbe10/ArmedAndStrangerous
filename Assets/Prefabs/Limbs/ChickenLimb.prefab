@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2501147534036212102}
   m_LocalRotation: {x: 0.70658946, y: 0.70658934, z: -0.027045341, w: 0.027045373}
-  m_LocalPosition: {x: -0.08624609, y: 0.94342655, z: -0.010912802}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 813192867298013024}
@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5197420297496403907}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7645186, y: 0, z: 0.0020369138}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7963326587985554262}
@@ -286,8 +286,9 @@ GameObject:
   - component: {fileID: -7229387246398502566}
   - component: {fileID: -156774124333185076}
   - component: {fileID: 1986691050621773215}
+  - component: {fileID: 5386465686701585377}
   m_Layer: 0
-  m_Name: ChickenLimb-Prefab
+  m_Name: ChickenLimb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptIcon: {fileID: 7844682269212497367, guid: 7174c4259887e3a41974e70827c9173a,
     type: 3}
+  itemName: Chicken
 --- !u!114 &1986691050621773215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,3 +371,17 @@ MonoBehaviour:
   socketOffset: {x: 0, y: 0.8, z: 0}
   axis: {x: 0, y: -1, z: 0}
   rootBody: {fileID: 0}
+--- !u!114 &5386465686701585377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401922464176904517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2ff953cc50c4e48aa103b2c6abe854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthRange: {x: 60, y: 90}
+  deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
