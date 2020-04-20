@@ -7,9 +7,16 @@ using UnityEngine.UI;
 
 public class LimbPickup : MonoBehaviour
 {
-    public List<SocketComponent> bodySockets;
+    public SocketComponent LeftArm;
+    public SocketComponent RightArm;
+    public SocketComponent LeftLeg;
+    public SocketComponent RightLeg;
+
     public GameObject radialPicker;
     public Text radialPickerLabel;
+
+
+    private SocketComponent[] m_bodySockets;
     private List<SocketComponent> m_pickupCandidates;
     private RadialState m_state;
 
@@ -25,6 +32,12 @@ public class LimbPickup : MonoBehaviour
     {
         m_state = RadialState.None;
         m_pickupCandidates = new List<SocketComponent>();
+
+        m_bodySockets = new SocketComponent[4];
+        m_bodySockets[0] = LeftArm;
+        m_bodySockets[1] = RightArm;
+        m_bodySockets[2] = LeftLeg;
+        m_bodySockets[3] = RightLeg;
     }
 
     // Update is called once per frame
@@ -49,8 +62,6 @@ public class LimbPickup : MonoBehaviour
             radialPicker.SetActive(false);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().objectName = "";
         }
-
-        Debug.Log(m_pickupCandidates.Count);
     }
 
     public void SetPickupDestination(int holeIndex)
@@ -59,14 +70,14 @@ public class LimbPickup : MonoBehaviour
         {
             var obj = m_pickupCandidates.FirstOrDefault();
             var interactable = obj.GetComponent<Interactable>();
-            obj.PlugIntoSocket(bodySockets[holeIndex]);
+            obj.PlugIntoSocket(m_bodySockets[holeIndex]);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable(interactable.itemName);
             m_pickupCandidates.Remove(obj);
             interactable.HideIcon();
         }
         else if (m_state == RadialState.Remove)
         {
-            bodySockets[holeIndex].Unplug();
+            m_bodySockets[holeIndex].Unplug();
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable("");
         }
     }

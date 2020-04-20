@@ -68,7 +68,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hipsOffset: {x: 0, y: 0, z: 0}
-  speed: 2
+  rotationOffset: {x: 0, y: 0, z: 0}
+  crawlSpeed: 1
+  walkspeed: 2
   jumpSpeed: 8
   gravity: 0
 --- !u!54 &1499141647
@@ -260,6 +262,26 @@ PrefabInstance:
     - target: {fileID: 6965296612707536361, guid: 368747bbd8c8c73469c68fc54735f540,
         type: 3}
       propertyPath: bodySockets.Array.data[3]
+      value: 
+      objectReference: {fileID: 8836620837846937864}
+    - target: {fileID: 6965296612707536361, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: LeftArm
+      value: 
+      objectReference: {fileID: 7882004042759697310}
+    - target: {fileID: 6965296612707536361, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: RightArm
+      value: 
+      objectReference: {fileID: 2468468192310030383}
+    - target: {fileID: 6965296612707536361, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: LeftLeg
+      value: 
+      objectReference: {fileID: 238613880723748159}
+    - target: {fileID: 6965296612707536361, guid: 368747bbd8c8c73469c68fc54735f540,
+        type: 3}
+      propertyPath: RightLeg
       value: 
       objectReference: {fileID: 8836620837846937864}
     - target: {fileID: 6965296612707536363, guid: 368747bbd8c8c73469c68fc54735f540,
