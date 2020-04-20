@@ -27,6 +27,7 @@ public class PeasantController : MonoBehaviour
     public CharacterAttack characterAttack;
 
     public float armedProbability;
+    public bool disengageAtDistance = true;
     public Vector3 hipsOffset;
     public GameObject[] skins;
     public float speed = 1.0f;
@@ -155,7 +156,7 @@ public class PeasantController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (engaged)
+            if (engaged && disengageAtDistance)
             {
                 animator.SetTrigger("Disengage");
                 ChangeState(PeasantSate.IDLE);

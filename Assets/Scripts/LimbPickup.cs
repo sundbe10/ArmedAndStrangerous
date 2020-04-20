@@ -43,6 +43,7 @@ public class LimbPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CleanPickUpCandidates();
         if (Input.GetButton("Fire3") && m_pickupCandidates.Count > 0)
         {
             m_state = RadialState.Pickup;
@@ -124,6 +125,17 @@ public class LimbPickup : MonoBehaviour
         {
             m_pickupCandidates.Remove(socketObj);
             socketObj.GetComponent<Interactable>().HideIcon();
+        }
+    }
+
+    private void CleanPickUpCandidates()
+    {
+        foreach(var candidate in m_pickupCandidates)
+        {
+            if (!candidate)
+            {
+                m_pickupCandidates.Remove(candidate);
+            }
         }
     }
 }
