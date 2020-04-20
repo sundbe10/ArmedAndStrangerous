@@ -16,6 +16,7 @@ public enum PeasantSate
 
 [RequireComponent(typeof(DropObjects))]
 [RequireComponent(typeof(RandomWeaponController))]
+[RequireComponent(typeof(CharacterHealth))]
 
 public class PeasantController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class PeasantController : MonoBehaviour
     Animator animator;
     public PeasantSate state;
 
-    public bool canAttack;
+    public float attackProbability;
     public Vector3 hipsOffset;
     public GameObject[] skins;
     public float health = 10;
@@ -33,6 +34,7 @@ public class PeasantController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private GameObject target;
     private bool engaged;
+    private bool hasWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,10 @@ public class PeasantController : MonoBehaviour
             skins[Random.Range(0, skins.Length)].SetActive(true);
         }
 
-        Arm();
+        if (attackProbability > 0)
+        {
+            Arm();
+        }
 
         ChangeState(PeasantSate.IDLE);
     }
@@ -111,7 +116,7 @@ public class PeasantController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             target = other.gameObject;
-            if(canAttack)
+            if(hasWeapon)
             {
                 ChangeState(PeasantSate.ENGAGED);
             }
@@ -196,9 +201,9 @@ public class PeasantController : MonoBehaviour
 
     private void Arm()
     {
-        if (Random.value < 0.2)
+        if (Random.value < attackProbability)
         {
-            canAttack = true;
+            hasWeapon = true;
             GetComponent<RandomWeaponController>().Spawn();
         }
     }

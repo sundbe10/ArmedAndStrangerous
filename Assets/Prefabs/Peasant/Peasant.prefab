@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  canAttack: 0
+  attackProbability: 1
   hipsOffset: {x: 0, y: 0, z: 0}
   skins:
   - {fileID: 1700849930442817909}
@@ -1502,7 +1502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 5176164116538074347, guid: 4bbc31971232113468fff1031d1ef4c1, type: 3}
-  - {fileID: 131468, guid: f61def225eac3e247985f6679965a655, type: 3}
+  - {fileID: 3405766530434181757, guid: 77fa035929c4c4ad7878ac05347a20ed, type: 3}
+  - {fileID: 122762, guid: b6c1c2a5e606d5f49a3095eca864188b, type: 3}
   socket: {fileID: 1700849930442722159}
 --- !u!1 &1700849930442780191
 GameObject:
