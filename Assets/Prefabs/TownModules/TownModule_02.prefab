@@ -1438,19 +1438,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &151635947199612216
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237049109867099741}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2939243, y: 0.14469899, z: 2.9657943}
-  m_Center: {x: -1.4608679, y: 0.07234948, z: -1.4924594}
 --- !u!1 &8748774176484802123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,10 +1871,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Path_Tile_02
       objectReference: {fileID: 0}
-    - target: {fileID: 111248, guid: 8cab502212f9c98408dba5ee83b4054a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 8cab502212f9c98408dba5ee83b4054a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8899994
@@ -1937,12 +1920,6 @@ PrefabInstance:
 --- !u!4 &8237049109867191879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400010, guid: 8cab502212f9c98408dba5ee83b4054a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8237049109867054285}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8237049109867099741 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 111248, guid: 8cab502212f9c98408dba5ee83b4054a,
     type: 3}
   m_PrefabInstance: {fileID: 8237049109867054285}
   m_PrefabAsset: {fileID: 0}

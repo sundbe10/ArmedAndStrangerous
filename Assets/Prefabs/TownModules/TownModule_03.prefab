@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &4390753817567524125
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417802066889097411}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0063748, y: 0.067790516, z: 2.9591827}
-  m_Center: {x: -1.4961069, y: 0.033895258, z: -1.4991152}
---- !u!65 &2369120593444134486
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417802068227125964}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2939243, y: 0.14469899, z: 2.9657948}
-  m_Center: {x: -1.4608679, y: 0.07234948, z: -1.4924597}
 --- !u!1 &895508570694258836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,10 +2467,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Path_Cobble_02
       objectReference: {fileID: 0}
-    - target: {fileID: 188894, guid: f19c957688bdf7849aa321d60569a6b2, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 498126, guid: f19c957688bdf7849aa321d60569a6b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.210003
@@ -2546,12 +2516,6 @@ PrefabInstance:
 --- !u!4 &417802066889291987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498126, guid: f19c957688bdf7849aa321d60569a6b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 417802066889253149}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &417802066889097411 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 188894, guid: f19c957688bdf7849aa321d60569a6b2,
     type: 3}
   m_PrefabInstance: {fileID: 417802066889253149}
   m_PrefabAsset: {fileID: 0}
@@ -4849,10 +4813,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Path_Tile_01
       objectReference: {fileID: 0}
-    - target: {fileID: 113036, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 488878, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.209999
@@ -4899,12 +4859,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8b53b4a2c2a624d8f344f282d709aa, type: 3}
---- !u!1 &417802068227125964 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 113036, guid: 0c8b53b4a2c2a624d8f344f282d709aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 417802068227017536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &417802068227473134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 488878, guid: 0c8b53b4a2c2a624d8f344f282d709aa,
