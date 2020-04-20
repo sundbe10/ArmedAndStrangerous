@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
 
         if (moveDirection.magnitude > 0) {
             animator.SetBool("Run", true);
-            transform.rotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 5.0f * Time.deltaTime);
         }
         else {
             animator.SetBool("Run", false);
@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour
         if (hasLegs)
         {
             moveMode = MoveMode.Walking;
-            hipsOffset = new Vector3(0, -0.1f, 0);
+            hipsOffset = new Vector3(0, -0.15f, 0);
             rotationOffset = Vector3.zero;
         }
         else
