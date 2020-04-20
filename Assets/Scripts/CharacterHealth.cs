@@ -2,14 +2,20 @@
 using UnityEngine.Events;
 using System.Collections;
 
+[System.Serializable]
+public class HealthChangeEvent : UnityEvent<float>
+{
+}
+
 public class CharacterHealth : MonoBehaviour
 {
     public float health = 10;
+    public HealthChangeEvent healthChange;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-
+        healthChange = new HealthChangeEvent();
     }
 
     // Update is called once per frame
@@ -18,11 +24,12 @@ public class CharacterHealth : MonoBehaviour
 
     }
 
-    public float Hurt(float damage)
+    public void Hurt(float damage)
     {
+        Debug.Log("Hurt");
         health -= damage;
         if (health < 0) health = 0;
-        return health;
+        healthChange.Invoke(health);
     }
 
 }

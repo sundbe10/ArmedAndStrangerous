@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5376642871095607458}
   - component: {fileID: 6128102408286109391}
   - component: {fileID: -4645523255893715521}
+  - component: {fileID: 2251628360324936479}
   m_Layer: 0
   m_Name: pu_Rigged_HLeg_R
   m_TagString: Untagged
@@ -170,6 +171,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthRange: {x: 20, y: 30}
   deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
+--- !u!114 &2251628360324936479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294804950740233389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07e1d63c59f54d75b8c06f10f0e87e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!54 &8918517507715089015
 Rigidbody:
   m_ObjectHideFlags: 0

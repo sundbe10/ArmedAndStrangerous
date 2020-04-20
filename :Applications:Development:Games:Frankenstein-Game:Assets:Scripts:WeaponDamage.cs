@@ -17,4 +17,9 @@ public class WeaponDamage : MonoBehaviour
     {
         
     }
+
+    public void Attack(GameObject target)
+    {
+
+    }
 }

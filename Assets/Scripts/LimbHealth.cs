@@ -25,7 +25,10 @@ public class LimbHealth : MonoBehaviour
     {
         health -= Time.deltaTime;
 
-        mesh.material.color = Color32.Lerp(Color.white, decayed, (maxHealth - health) / maxHealth);
+        if (mesh)
+        {
+            mesh.material.color = Color32.Lerp(Color.white, decayed, (maxHealth - health) / maxHealth);
+        }
 
         if (health < 0.0f)
         {

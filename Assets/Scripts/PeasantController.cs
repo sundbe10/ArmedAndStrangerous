@@ -20,14 +20,15 @@ public enum PeasantSate
 
 public class PeasantController : MonoBehaviour
 {
-    CharacterController characterController;
     Animator animator;
-    public PeasantSate state;
+    CharacterHealth characterHealth;
 
-    public float attackProbability;
+    public PeasantSate state;
+    public CharacterAttack characterAttack;
+
+    public float armedProbability;
     public Vector3 hipsOffset;
     public GameObject[] skins;
-    public float health = 10;
     public float speed = 1.0f;
     public float runSpeed = 3.0f;
 
@@ -39,19 +40,25 @@ public class PeasantController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterHealth = GetComponent<CharacterHealth>();
         animator = GetComponent<Animator>();
+
         animator.Play("Idle");
 
+        // Choose Skin
         if (skins.Length > 0)
         {
             skins[Random.Range(0, skins.Length)].SetActive(true);
         }
 
-        if (attackProbability > 0)
+        // Arm character with weapon
+        if (armedProbability > 0)
         {
             Arm();
         }
+
+        // Event Listeners
+        characterHealth.healthChange.AddListener(Hurt);
 
         ChangeState(PeasantSate.IDLE);
     }
@@ -97,6 +104,10 @@ public class PeasantController : MonoBehaviour
                     transform.position += transform.forward * speed * Time.deltaTime;
                     break;
                 }
+            case PeasantSate.ATTACKING:
+                {
+                    break;
+                }
         }
     }
 
@@ -108,7 +119,6 @@ public class PeasantController : MonoBehaviour
             {
                 ChangeState(PeasantSate.ATTACKING);
             }
-            Hurt(5);
         }
     }
 
@@ -141,7 +151,6 @@ public class PeasantController : MonoBehaviour
 
     private void ChangeState(PeasantSate newState)
     {
-        Debug.Log(newState);
         if (newState == state) return;
 
         state = newState;
@@ -199,23 +208,29 @@ public class PeasantController : MonoBehaviour
         }
     }
 
+    public void Hit()
+    {
+        characterAttack.Attack();
+    }
+
     private void Arm()
     {
-        if (Random.value < attackProbability)
+        if (Random.value < armedProbability)
         {
             hasWeapon = true;
             GetComponent<RandomWeaponController>().Spawn();
         }
     }
 
-    private void Hurt(float damage)
+    private void Hurt(float health)
     {
-        health -= damage;
-        ChangeState(PeasantSate.HURT);
-
         if (health <= 0)
         {
             ChangeState(PeasantSate.DEAD);
+        }
+        else
+        {
+            ChangeState(PeasantSate.HURT);
         }
     }
 

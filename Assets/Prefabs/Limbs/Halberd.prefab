@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2973571077756565129}
   - component: {fileID: 7265650082838471409}
   - component: {fileID: -6413987159477643704}
+  - component: {fileID: -5643413616522521044}
   m_Layer: 0
-  m_Name: pu_Halberd
+  m_Name: Halberd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +112,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthRange: {x: 120, y: 150}
   deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
+--- !u!114 &-5643413616522521044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176164116538074347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07e1d63c59f54d75b8c06f10f0e87e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &8957478856706947352
 GameObject:
   m_ObjectHideFlags: 0
