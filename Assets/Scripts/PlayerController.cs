@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 hipsOffset;
     public Vector3 rotationOffset;
     public PlayerState state;
+    public EndController endController;
 
     public CharacterAttack characterAttack;
     public float crawlSpeed = 1.5f;
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.DEAD:
                 {
                     Destroy(gameObject);
+                    endController.EndGame(false);
                     break;
                 }
         }

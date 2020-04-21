@@ -12,7 +12,9 @@ public class TownController : MonoBehaviour
     {
         for(int i = 0; i < numBlocks; i++)
         {
-            Instantiate(townBlock, Vector3.right * 17.5f * i, Quaternion.identity);
+            var position = Vector3.right * 17.5f * i;
+            position.y += i * 0.01f;
+            Instantiate(townBlock, position, Quaternion.identity);
         }
     }
 
