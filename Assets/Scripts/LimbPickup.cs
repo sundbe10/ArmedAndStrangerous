@@ -12,6 +12,9 @@ public class LimbPickup : MonoBehaviour
     public SocketComponent LeftLeg;
     public SocketComponent RightLeg;
 
+    public AudioClip PickupSound;
+    public AudioClip RemoveSound;
+
     public GameObject radialPicker;
     public Text radialPickerLabel;
 
@@ -74,11 +77,13 @@ public class LimbPickup : MonoBehaviour
             obj.PlugIntoSocket(m_bodySockets[holeIndex]);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable(interactable.itemName);
             m_pickupCandidates.Remove(obj);
+            AudioSource.PlayClipAtPoint(PickupSound, Camera.main.transform.position + Vector3.forward, 0.5f);
             interactable.HideIcon();
         }
         else if (m_state == RadialState.Remove)
         {
             m_bodySockets[holeIndex].Unplug();
+            AudioSource.PlayClipAtPoint(RemoveSound, Camera.main.transform.position + Vector3.forward, 0.5f);
             radialPicker.GetComponentInChildren<RMF_RadialMenu>().elements[holeIndex].setMenuLable("");
         }
     }

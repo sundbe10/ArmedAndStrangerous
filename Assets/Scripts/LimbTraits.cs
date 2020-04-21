@@ -7,6 +7,7 @@ public class LimbTraits : MonoBehaviour
     public Vector2 maxHealthRange = new Vector2(20.0f, 30.0f);
     public float speedModifier = 1.0f;
     public GameObject deathFx;
+    public AudioClip[] FootstepSounds;
 
     private float maxHealth;
     private float health;

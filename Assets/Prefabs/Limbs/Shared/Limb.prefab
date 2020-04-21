@@ -109,4 +109,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthRange: {x: 20, y: 30}
+  speedModifier: 1
   deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
+  FootstepSounds:
+  - {fileID: 8300000, guid: ce0d7a658104c6040afcb6ad6bab0761, type: 3}
+  - {fileID: 8300000, guid: 7edaec430b70cfa4c8c5bba4322a3765, type: 3}
+  - {fileID: 8300000, guid: 5a221b985c29e634c9d7064331a2c62c, type: 3}
+  - {fileID: 8300000, guid: 9ef3fab1f9c8e1d4abd2519206f6f5ec, type: 3}
+  - {fileID: 8300000, guid: 29b266ae0e3ed8848b6bd0cb86c66403, type: 3}
+  - {fileID: 8300000, guid: 6ba5efa9f4b9d54419bdec44d477a4ec, type: 3}
+  - {fileID: 8300000, guid: ce2771459d43d844b9db0523b2821b8e, type: 3}
+  - {fileID: 8300000, guid: a6c0e4e8fdd3ecd41b027265d83aab11, type: 3}
+  - {fileID: 8300000, guid: 45acb772ff07ddc4086e1de14102b54f, type: 3}
