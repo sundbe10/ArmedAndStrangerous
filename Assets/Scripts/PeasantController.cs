@@ -38,6 +38,7 @@ public class PeasantController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private bool engaged;
     private bool hasWeapon;
+    private Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
@@ -134,6 +135,13 @@ public class PeasantController : MonoBehaviour
                     break;
                 }
         }
+
+        lastPos = transform.position;
+    }
+
+    public float GetPhysicsSpeed()
+    {
+        return (transform.position - lastPos).magnitude;
     }
     
 

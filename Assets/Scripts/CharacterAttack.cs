@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterAttack : MonoBehaviour
 {
     Collider collider;
+    public AudioClip[] attackSound;
 
     private bool hasAttacked;
 
@@ -30,6 +31,8 @@ public class CharacterAttack : MonoBehaviour
     public  void Attack()
     {
         collider.enabled = true;
+        if (attackSound.Length > 0)
+            AudioSource.PlayClipAtPoint(attackSound[Random.Range(0, attackSound.Length)], transform.position, 2.0f);
         StartCoroutine(AttackCoolDown());
     }
 

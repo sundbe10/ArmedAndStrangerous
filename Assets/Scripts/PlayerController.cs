@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
-    enum MoveMode
+    public enum MoveMode
     {
         Crawling = 0,
         Walking = 1,
@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private LimbPickup limbComponent;
     private MoveMode moveMode;
+    private float currentSpeed;
+    private Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         characterHealth.healthChange.AddListener(Hurt);
 
         ChangeState(PlayerState.ACTIVE);
+        currentSpeed = 0.0f;
     }
 
     // Update is called once per frame
@@ -65,6 +68,21 @@ public class PlayerController : MonoBehaviour
                 }
         }
 
+    }
+
+    public MoveMode GetMoveMode()
+    {
+        return moveMode;
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
+    public float GetCurrentPhysicsSpeed()
+    {
+        return (lastPos - transform.position).magnitude * Time.deltaTime;
     }
 
     private void ChangeState(PlayerState newState)
@@ -109,6 +127,8 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection *= speedMod;
 
+        currentSpeed = moveDirection.magnitude;
+
         animator.speed = moveMode == MoveMode.Walking ? 1.25f : 0.8f;
 
         if (moveDirection.magnitude > 0)
@@ -128,6 +148,7 @@ public class PlayerController : MonoBehaviour
 
         //characterController.Move(moveDirection * Time.deltaTime);
         transform.position += moveDirection * Time.deltaTime;
+        lastPos = transform.position;
     }
 
     private void Hurt(float health)

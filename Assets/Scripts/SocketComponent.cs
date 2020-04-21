@@ -54,6 +54,18 @@ public class SocketComponent : MonoBehaviour
         return null;
     }
 
+    public AudioClip GetConnectedFootstepClip()
+    {
+        if (m_hasPlug)
+        {
+            var limbTraits = GetConnectedLimbTraits();
+            if (limbTraits.FootstepSounds.Length > 0)
+                return limbTraits.FootstepSounds[Random.Range(0, limbTraits.FootstepSounds.Length)];
+        }
+
+        return null;
+    }
+
     public bool IsPlugged()
     {
         return m_isPlugged;

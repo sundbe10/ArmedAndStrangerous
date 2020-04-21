@@ -4326,6 +4326,36 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 08b0410da4c0fab4f86e6959c05037d6, type: 3}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 90c10efec508733458f2f8aaff1618c8, type: 3}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fc7fb22c93816904a842f20d62d8015b, type: 3}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d1c07a8dc6bd4947a9f3c5cfc26275f, type: 3}
+    - target: {fileID: 2479286963159340410, guid: 908c25508a72548b095d2aab4e4f3077,
+        type: 3}
+      propertyPath: attackSound.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: d8abdf2b90d79154b98dfe0c1b1ff762, type: 3}
     - target: {fileID: 2479286963159340411, guid: 908c25508a72548b095d2aab4e4f3077,
         type: 3}
       propertyPath: m_Center.z
