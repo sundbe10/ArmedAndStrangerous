@@ -194,3 +194,5 @@ MonoBehaviour:
   maxHealthRange: {x: 60, y: 80}
   speedModifier: 0.8
   deathFx: {fileID: 100000, guid: 93147a7a5165468429b0da9fecba13e2, type: 3}
+  FootstepSounds:
+  - {fileID: 8300000, guid: 7eda86ea2bf21484ba3c0a67937a083a, type: 3}

@@ -11,6 +11,7 @@ public class CharacterHealth : MonoBehaviour
 {
     public float health = 10;
     public HealthChangeEvent healthChange;
+    public AudioClip[] damageSound;
 
     // Use this for initialization
     void Awake()
@@ -26,7 +27,7 @@ public class CharacterHealth : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        Debug.Log("Hurt");
+        //Debug.Log("Hurt");
         health -= damage;
         if (health < 0) health = 0;
         healthChange.Invoke(health);

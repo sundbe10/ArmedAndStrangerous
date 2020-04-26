@@ -124,6 +124,10 @@ MonoBehaviour:
   healthChange:
     m_PersistentCalls:
       m_Calls: []
+  damageSound:
+  - {fileID: 8300000, guid: cda20ced1bef09b4eb844b8efa2ff218, type: 3}
+  - {fileID: 8300000, guid: 0a827173a4749624781564dc15e27881, type: 3}
+  - {fileID: 8300000, guid: fb5d45bd275167844a9299db698142a5, type: 3}
 --- !u!114 &3281881695049221423
 MonoBehaviour:
   m_ObjectHideFlags: 0

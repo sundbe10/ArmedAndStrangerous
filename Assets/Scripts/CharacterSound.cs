@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterSound : MonoBehaviour
 {
-    public AudioClip FootstepSound;
     public AudioClip CrawlSound;
 
     public GameObject LeftFootBone;
@@ -12,11 +11,6 @@ public class CharacterSound : MonoBehaviour
 
     public SocketComponent LeftLeg;
     public SocketComponent RightLeg;
-
-    private Vector3 leftPos;
-    private Vector3 rightPos;
-    private bool leftPlanted;
-    private bool rightPlanted;
 
     private PlayerController playerController;
     private AudioSource crawlSource;
@@ -30,8 +24,6 @@ public class CharacterSound : MonoBehaviour
         crawlSource.minDistance = 100.0f;
         crawlSource.clip = CrawlSound;
         crawlSource.volume = 0.0f;
-        leftPlanted = false;
-        rightPlanted = false;
     }
 
     // Update is called once per frame
@@ -40,10 +32,6 @@ public class CharacterSound : MonoBehaviour
         if (playerController.GetMoveMode() == PlayerController.MoveMode.Crawling)
         {
             UpdateCrawlSound();
-        }
-        else
-        {
-            UpdateFootsteps();
         }
     }
 
@@ -66,39 +54,25 @@ public class CharacterSound : MonoBehaviour
         }
     }
 
-    void UpdateFootsteps()
+    public void UpdateFootsteps(int footIndex)
     {
-        float characterSpeed = playerController.GetCurrentPhysicsSpeed();
-        float leftSpeed = (leftPos - LeftFootBone.transform.position).magnitude * Time.deltaTime;
-        float rightSpeed = (rightPos - RightFootBone.transform.position).magnitude * Time.deltaTime;
-
-        Debug.Log(leftSpeed - characterSpeed);
-        if (leftSpeed - characterSpeed < 0.01f)
+        switch (footIndex)
         {
-            if (!leftPlanted)
-            {
-                leftPlanted = true;
-                var clip = LeftLeg.GetConnectedFootstepClip();
-                AudioSource.PlayClipAtPoint(clip, transform.position);
-            }
+            case 0:
+                {
+                    var clip = LeftLeg.GetConnectedFootstepClip();
+                    AudioSource.PlayClipAtPoint(clip, transform.position);
+                    break;
+                }
+            case 1:
+                {
+                    var clip = RightLeg.GetConnectedFootstepClip();
+                    AudioSource.PlayClipAtPoint(clip, transform.position);
+                    break;
+                }
+            default:
+                break;
         }
-        else if (leftPlanted)
-            leftPlanted = false;
-
-        if (rightSpeed - characterSpeed < 0.01f)
-        {
-            if (!rightPlanted)
-            {
-                rightPlanted = true;
-                var clip = RightLeg.GetConnectedFootstepClip();
-                AudioSource.PlayClipAtPoint(clip, transform.position);
-            }
-        }
-        else if (rightPlanted)
-            rightPlanted = false;
-
-        leftPos = LeftFootBone.transform.position;
-        rightPos = RightFootBone.transform.position;
     }
 
 }
